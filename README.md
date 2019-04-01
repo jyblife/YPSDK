@@ -109,7 +109,7 @@ NSString *url = @"https://www.baidu.com";
 
 由于SDK内部页面需使用摄像头、通讯录、定位、相册，所以需要在项目Info.plist中添加权限申请描述。
 
-![image6](./Images/image6.png)
+![image6](./Images/image7.png)
 
 也可直接Copy：
 
