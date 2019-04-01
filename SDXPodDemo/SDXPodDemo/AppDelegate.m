@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "YPSDK/YPSDX.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +18,22 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+#ifdef DEBUG
+    [YPSDX startSDKDebugMode];
+#else
+    [YPSDX startSDK];
+#endif
+    
+    //初始化rootVC（rootVC为navC的根视图控制器，也就是首个被navC管理的视图控制器）
+    ViewController *rootVC = [[ViewController alloc] init]; //自定义一个RootViewController类
+    
+    //初始化navC 初始化方法使用的是可以给navC设置根视图控制器的方法
+    UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:rootVC];
+    
+    //将navC设置为window设置根视图控制器
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    [self.window setRootViewController:navC];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
